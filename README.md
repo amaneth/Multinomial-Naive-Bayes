@@ -1,4 +1,4 @@
-# Vectorized impelementation Multinomial naive bayes text classifier
+# Vectorized impelementation of Multinomial naive bayes text classifier
 
 Multinomial Naive Bayes algorithm is a probabilistic learning method that is mostly used in Natural Language Processing (NLP). A simple example for Multinomial Bayes classifier is a spam filter. It classifies the message as spam or not spam. What makes the Naive naive is that it understands a text as a composition of words without considering its structure or context. That means it assumes there is no difference between the texts “A man kills a snake” and “The snake kills a man” because their composition is the same.
 Our interest in the Naive byes classifier is to find the probability of a document being in a specific class given that the document is composed of some words. It uses the Bayes theorem to solve this.
@@ -34,7 +34,7 @@ python3 predict.py --test "text to be predicted"
 * You many need to download the english stop words initially. Do the following.
 ```
 import nltk
-nltk.download.stopwords.('english')
+nltk.download('stopwords')
 ```
 * If you want to make prediction on texts you enter, you should save the model first.
 
