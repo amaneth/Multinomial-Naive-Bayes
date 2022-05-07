@@ -10,7 +10,7 @@ def test(model,text):
 
     category_probablity = np.log(model.prior) + cat_log_probablity
     prediction=np.argmax(category_probablity,axis=1)
-    print("The prediction:", model.labels[prediction[0]]) 
+    print("Prediction:", model.labels[prediction[0]]) 
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--text', help='the text to be predicted', required=True, type=str)
