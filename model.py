@@ -11,6 +11,7 @@ class MultinomialNB():
         self.id=0
         self.prior=None
         self.likelihood=None
+        self.labels=None
 
     def lemmantize(self, word):
         stemmer = SnowballStemmer(language = 'english')
@@ -94,7 +95,6 @@ class MultinomialNB():
             counts: the count maxtrix of frequency of each word in the document
         """
         num_classes= counts.shape[1]
-        print("num of calsses", num_classes)
         vocabulary_size = len(self.vocublary)
         word_probablities=np.zeros((vocabulary_size, num_classes))
         category_count=np.sum(counts,axis=0)
