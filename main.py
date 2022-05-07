@@ -9,8 +9,7 @@ from model import MultinomialNB
 from train import fit
 from test import test
 
-nltk.download('stopwords')
-nltk.download('wordnet')
+#nltk.download('stopwords')
 
 metadata = args.metadata
 k= args.k
@@ -21,12 +20,15 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--k', help='k is the laplacian smooting constant', default=k, type=float)
 parser.add_argument('--dataset', help='path to the dataset', default=metadata, type=str)
 parser.add_argument('--trainsize', help='the train data size', default=train_size, type=float)
-parser.add_argument('--savemodel', help='save the model as file', default=True, type=bool)
-arguments = vars(parser.parse_args())
-k= arguments['k']
-path= arguments['dataset']
-train_size= arguments['trainsize']
-save_model= arguments['savemodel']
+parser.add_argument('--savemodel', help='save the model', action='store_true', default=False)
+parser.add_argument('--test',action='store_true', help='test the model', default=False)
+
+arguments = parser.parse_args()
+k= arguments.k
+path= arguments.dataset
+train_size= arguments.trainsize
+save_model= arguments.savemodel
+testmodel= arguments.test
 
 data= pd.read_csv(path) 
 X_train, y_train, X_test, y_test= train_test_split(data, train_size)
@@ -36,5 +38,7 @@ print("Training is done.")
 if save_model:
     with open('./model/model.pkl','wb') as handle:
         pickle.dump(naive, handle, protocol=pickle.HIGHEST_PROTOCOL)
-test(naive, X_test, y_test)
+
+if testmodel:
+    test(naive, X_test, y_test)
 
